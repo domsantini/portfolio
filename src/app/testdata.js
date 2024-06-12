@@ -1,7 +1,8 @@
 export const pages = [
-    {page: 'about', label: 'my story', color: '#6B5CA5', colorHover: '#CAB9B9'},
-    {page: 'projects', label: 'projects', color: '#72195A', colorHover: '#B3C3D0'},
-    {page: 'contact', label: 'get in touch', color: '#4C1036', colorHover: '#60AAE6'},
+    // {page: 'about', label: 'my story', color: '#94D1BE', colorHover: '#7FC7B0'},
+    {page: 'about', label: 'my story', color: '#7FC7B0', colorHover: '#63BB9F'},
+    {page: 'projects', label: 'projects', color: '#8BA7A3', colorHover: '#739691'},
+    {page: 'contact', label: 'get in touch', color: '#515948', colorHover: '#43493C'},
 ]
 
 export const projects = [

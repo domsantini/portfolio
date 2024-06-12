@@ -11,7 +11,7 @@ export function ProjectContent({ color }) {
     
     return (
         <div style={{ backgroundColor: color }} className='flex flex-col justify-center items-center h-full w-full p-10 overflow-hidden text-xl'>
-            <ul className='border-t border-solid border-white'>
+            <ul className='flex flex-col gap-4'>
                 {projects.map(({ id, title, description, stack, githubLink, liveLink, isShown, setIsShown}) => (
                     <ProjectItem
                         key={id}
@@ -33,31 +33,20 @@ export function ProjectContent({ color }) {
 
 function ProjectItem({ id, title, description, stack, githubLink, liveLink, isShown, setIsShown }) {
     return (    
-        <li className='flex justify-between items-center gap-40 px-2 py-4 border-b border-solid border-white text-white'>
-            <div 
-                className='flex flex-1' 
-            >
-                <p className='font-medium'>{title}</p>
-            </div>
-            <div className='space-x-4'>
+        <li className='flex flex-col gap-4 px-2 py-4 text-white '>
+            <p className='w-full border-b border-solid border-white'>{title}</p>
+            {/* <span>{stack.map((tech) => (
+                <span className='text-xs'>{tech}</span>
+            ))}</span> */}
+            <p className='text-base w-full'>{description}</p>
+            <div className='flex gap-2'>    
                 <Link className='opacity-60 hover:opacity-100' target='_blank' href={liveLink}>site</Link>
+                <span className='opacity-30'>{'·'}</span>
                 <Link className='opacity-60 hover:opacity-100' target='_blank' href={githubLink}>code</Link>
             </div>
-            {isShown && (
-                <div className='absolute'>
-                    <p>{description}</p>
-                    {stack.map((tech) => (
-                        <div 
-                            key={`${tech}-${id}`}
-                            className='border-2 border-solid border-red-500 rounded-lg'
-                        >
-                            <p>{tech}</p>
-                        </div>
-                    ))}
-                </div>
-            )}
         </li>
     )
 }
+
 
 export default ProjectContent;

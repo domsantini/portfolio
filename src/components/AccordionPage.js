@@ -2,35 +2,40 @@
 import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
+import useWindowWidth from '@/app/hooks/use-window-width'
 import ContentWrapper from './ContentWrapper';
 
-function AccordionPage({ isMobile, page, label, color, colorHover, activePage, setActivePage, setShowLanding }) {
-    // const isOpen = activePage === page;
-    const [isOpen, setIsOpen] = React.useState(false)
+function AccordionPage({ page, label, color, colorHover, activePage, setActivePage, setShowLanding }) {
+    let isOpen = activePage === page;
+    const width = useWindowWidth()
+    const [isMobile, setIsMobile] = React.useState(undefined)
     const [isHovered, setIsHovered] = React.useState(undefined)
     
+    React.useEffect(() => {
+        setIsMobile(width < 768)
+    }, [width])
+    
     function handleClick() {
-        if (page === activePage){
-            setActivePage(null)
-            setIsOpen(false)
-        } else {
+        if (activePage === null || activePage != page) {
             setActivePage(page)
-            setIsOpen(true)
-        }
+        } else if (activePage === page) {
+            setActivePage(null)
+        } 
     }
-        
+    
     return(
         <>
             <button
-                className='flex justify-between items-center min-h-[120px] w-full px-4 cursor-pointer md:flex-col md:h-full md:w-[120px] md:min-w-[120px] md:py-8 transition-colors'
-                style={{ backgroundColor:`${isHovered ? colorHover : color}`}}
+                className='flex justify-between items-center w-full outline-1 outline-[#6d6e71] outline p-4 cursor-pointer md:flex-col md:h-full md:py-8 transition-colors'
+                // TODO: Fix state being set onClick
+                style={{ backgroundColor:`${isHovered || isOpen ? colorHover : color}`}}
                 id={page}
                 onClick={handleClick}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
                 <div className='flex flex-1 justify-start md:justify-center items-center md:rotate-180'>
-                    <p className='uppercase text-3xl md:text-4xl font-extrabold text-white md:vertical-lr'>
+                    <p className='uppercase text-3xl md:text-4xl font-extrabold text-[#f5f5f5] md:vertical-lr'>
                         {label}
                     </p>
                 </div>
@@ -49,11 +54,15 @@ function AccordionPage({ isMobile, page, label, color, colorHover, activePage, s
                         animate='open'
                         exit='closed'
                         className='w-full flex overflow-auto'
-                        onAnimationComplete={ isOpen ? () => { setShowLanding(true) } : () => { setShowLanding(false) }}
+                        onAnimationComplete={(variant) => {
+                            variant === 'closed' && activePage 
+                            ? setShowLanding(true) 
+                            : setShowLanding(false)
+                        }}
                     >
                         <div
                             className='w-full'
-                            style={{ backgroundColor: color }}
+                            style={{ backgroundColor: colorHover }}
                         >    
                             <ContentWrapper page={page} />
                         </div>
@@ -64,25 +73,25 @@ function AccordionPage({ isMobile, page, label, color, colorHover, activePage, s
     )    
 }
 
-export default AccordionPage;
+export default React.memo(AccordionPage);
 
 const pageVariantsSmall = {
     open: {
         height: '100%',
         width: '100%',
-        transition: { delay: 0.1, duration: 1, ease: 'easeOut' }
+        transition: { delay: 0.1, duration: 0.7, ease: 'easeOut' }
     },
     closed: {
         height: '0%',
         width: '100%',
-        transition: { delay: 0.1, duration: 1, ease: 'easeIn'}
+        transition: { delay: 0.1, duration: 0.5, ease: 'easeIn'}
     },
 }
 const pageVariantsLarge = {
     open: {
         height: '100%',
         width: '100%',
-        transition: { delay: 0.1, duration: 1, ease: 'easeOut' }
+        transition: { delay: 0.1, duration: 0.7, ease: 'easeOut' }
     },
     closed: {
         height: '100%',

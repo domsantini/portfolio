@@ -21,7 +21,7 @@ function ContentWrapper({ page, color }) {
             animate='open'
             exit='closed'
             style={{ backgroundColor: color }} 
-            className='h-full w-full'
+            className='flex h-full w-full'
         >
             {ContentComponent ? <ContentComponent /> : null}
         </motion.div>

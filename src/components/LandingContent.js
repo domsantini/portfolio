@@ -2,18 +2,24 @@
 import { motion, AnimatePresence } from 'framer-motion'
 
 function LandingContent() {
+    
     return (
-        <AnimatePresence>    
+        <AnimatePresence>
             <motion.div 
-                className=" border-2 border-solid border-green-500 flex flex-col justify-center items-center gap-4 h-full w-full"
+                className="flex flex-col h-full w-full px-4 py-8 gap-8 leading-none text-[##1a1a1a]"
                 variants={contentVariants}
                 initial='closed'
                 animate='open'
-                exit='closed'
+                exit='closed'        
             >
-                <p className='text-[10vw] uppercase font-bold'>Dominic Santini</p>
-                <p className='text-2xl uppercase'>Frontend developer</p>
-                
+                <div className='flex '>
+                    <p className='text-5xl'>Hey. I'm Dom.</p>
+                </div>
+                <div className='flex-1 '>
+                    <p className='text-xl leading-7 tracking-wide'>
+                        I'm a self-taught frontend developer interested in creating clean digital experiences. React is my favorite tool. My newest obsession is animation. 
+                    </p>
+                </div>
             </motion.div>
         </AnimatePresence>
     )
@@ -28,6 +34,9 @@ const contentVariants = {
     },
     closed: { 
         opacity: 0,
-        transition: { duration: 0.1 }
+        transition: {
+            type: 'spring'
+        }
+        // transition: { delay: 1, duration: 5, ease:'easeIn' }
     },
 }

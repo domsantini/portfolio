@@ -1,9 +1,8 @@
 function AboutContent() {
     return (
-        // <div style={{ backgroundColor: color }} className="flex flex-col justify-center px-10 space-y-4 h-full">
-        <div className="flex flex-col justify-center items-center px-10 space-y-4 h-full font-extralight text-white text-xl">
-            <div className='flex flex-col gap-4 max-w-[600px]'>    
-                <p className=' text-2xl'>Hello there!</p>
+        <div className="relative flex flex-col items-center px-4 py-6 font-extralight text-white text-base">
+            <div className='flex flex-col gap-4 overflow-scroll max-w-[500px]'>    
+                <p className='text-lg'>Hello there!</p>
                 <p>
                     I'm currently an independent front-end developer looking to bring immense passion, an eagerness to learn and develop, and a solid skill set to your team.
                 </p>
@@ -15,6 +14,7 @@ function AboutContent() {
                 </p>
                 <p>My spark has been reignited and I hope to work with you!</p>
             </div>
+            {/* <div className='absolute bottom-0 h-[40px] w-full z-30 blur-2xl'/> */}
         </div>
     )
 }
