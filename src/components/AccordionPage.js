@@ -26,7 +26,7 @@ function AccordionPage({ page, label, color, colorHover, activePage, setActivePa
     return(
         <>
             <button
-                className='flex justify-between items-center w-full outline-1 outline-[#6d6e71] outline p-4 cursor-pointer md:flex-col md:h-full md:py-8 transition-colors'
+                className='flex justify-between items-center w-full outline-1 outline-[#6d6e71] outline p-4 cursor-pointer md:flex-col md:h-full md:w-fit md:px-6 transition-colors'
                 // TODO: Fix state being set onClick
                 style={{ backgroundColor:`${isHovered || isOpen ? colorHover : color}`}}
                 id={page}
@@ -39,6 +39,7 @@ function AccordionPage({ page, label, color, colorHover, activePage, setActivePa
                         {label}
                     </p>
                 </div>
+                {/* This bit is for the color code, if I ever want to add that back */}
                 {/* <div style={isMobile ? { writingMode: 'vertical-lr' } : undefined}>
                     <p className='text-xs text-white'>
                         {isHovered ? colorHover : color}
