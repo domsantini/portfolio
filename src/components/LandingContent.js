@@ -13,11 +13,11 @@ function LandingContent() {
                 exit='closed'        
             >
                 <div className='flex'>
-                    <p className='text-5xl'>Hey. I'm Dom.</p>
+                    <p className='text-5xl'>Hey, I'm Dom.</p>
                 </div>
-                <div className='flex-1 '>
+                <div className='flex-1'>
                     <p className='text-xl leading-7 tracking-wide max-w-[500px]'>
-                        I'm a self-taught frontend developer interested in creating clean digital experiences. React is my favorite tool. My newest obsession is animation. 
+                        I'm a self-taught developer interested in creating clean digital experiences. I love reaching for React, but my curious nature keeps me exploring. 
                     </p>
                 </div>
             </motion.div>
